@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Equazione di Secondo Grado</title>
+<script>
+function calcolaRadici() {
+    // Recupera i coefficienti dal form
+    var a = parseFloat(document.getElementById('coeffA').value);
+    var b = parseFloat(document.getElementById('coeffB').value);
+    var c = parseFloat(document.getElementById('coeffC').value);
+    // Calcola il discriminante (DELTA)
+    var delta = b * b - 4 * a * c;
+    // Calcola le radici
+    var radice1, radice2;
+    if (delta > 0) {
+        radice1 = (-b + Math.sqrt(delta)) / (2 * a);
+        radice2 = (-b - Math.sqrt(delta)) / (2 * a);
+        document.getElementById('risultati').innerHTML = 'Le radici sono reali e distinte: ' + radice1 + ' e ' + radice2;
+    } else if (delta === 0) {
+        radice1 = -b / (2 * a);
+        document.getElementById('risultati').innerHTML = 'L\'equazione ha radici reali e coincidenti: ' + radice1;
+    } else {
+        document.getElementById('risultati').innerHTML = 'L\'equazione non ha radici reali.';
+    }
+	  document.getElementById('stampa').innerHTML = a+'x<sup>2</sup>+'+b+'x'+c+'=0';
+}
+
+function resetForm() {
+    document.getElementById('coeffA').value = '';
+    document.getElementById('coeffB').value = '';
+    document.getElementById('coeffC').value = '';
+    document.getElementById('risultati').innerHTML = '';
+}
+</script>
+</head>
+<body>
+<h1>Equazione di Secondo Grado</h1>
+<div id="equazione">ax^2 + bx + c = 0</div>
+<form>
+Coefficiente a: <input type="number" id="coeffA" required>
+Coefficiente b: <input type="number" id="coeffB" required>
+Coefficiente c: <input type="number" id="coeffC" required>
+<button type="button" onclick="calcolaRadici();">Calcola Radici</button>
+<button type="button" onclick="resetForm();">Reset</button>
+</form>
+<div id="risultati"></div>
+<div id="stampa"></div>
+</body>
+</html>
